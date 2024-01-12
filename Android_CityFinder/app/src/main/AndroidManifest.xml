@@ -13,10 +13,10 @@
 
         <!-- The Main Activity of the App -->
         <activity
-            android:name="com.example.raghunandan.ragumysuru.ui.MainActivity"
+            android:name="com.example.raghunandan.ragumysuru.ui.SplashActivity"
             android:icon="@mipmap/ic_launcher"
             android:label="City Finder"
-            android:theme="@style/AppTheme.Main">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +27,18 @@
         <!-- The About Activity of the App -->
         <activity
             android:name="com.example.raghunandan.ragumysuru.ui.about.AboutActivity"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name="com.example.raghunandan.ragumysuru.ui.MainActivity"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name="com.example.raghunandan.ragumysuru.ui.LoginActivity"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name="com.example.raghunandan.ragumysuru.ui.SignupActivity"
             android:theme="@style/AppTheme" />
 
         <!-- Preloaded Fonts used in the App -->

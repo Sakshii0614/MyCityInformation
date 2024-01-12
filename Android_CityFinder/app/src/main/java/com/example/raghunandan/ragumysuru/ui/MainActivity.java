@@ -17,6 +17,7 @@
 package com.example.raghunandan.ragumysuru.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -43,9 +44,17 @@ import com.example.raghunandan.ragumysuru.ui.shops.ShopListFragment;
 import com.example.raghunandan.ragumysuru.ui.shops.ShopListPresenter;
 import com.example.raghunandan.ragumysuru.utils.InjectorUtility;
 
-
+/**
+ * The Main Activity of the App that inflates the layout 'R.layout.activity_main'
+ * containing the BottomNavigationView that displays a list of Places, Parks, Hotels, Restaurants
+ * and Shops, loaded by the Navigation Fragments.
+ *
+ * @author Kaushik N Sanji
+ */
 public class MainActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+
 
     //Bundle Constant for persisting the last viewed BottomNavigationView fragment menu item resource id
     private static final String BUNDLE_LAST_VIEWED_NAV_ITEM_INT_KEY = "Main.LastViewedNavMenuItemResId";
@@ -55,12 +64,20 @@ public class MainActivity extends AppCompatActivity
     //For the BottomNavigationView
     private BottomNavigationView mBottomNavigationView;
 
-
+    /**
+     * Called when the activity is starting.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *                           previously being shut down then this Bundle contains the data it most
+     *                           recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Inflating the Activity's UI
         setContentView(R.layout.activity_main);
+
+
 
         //Initialize Toolbar
         setupToolbar();
@@ -77,7 +94,14 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
+    /**
+     * Called to retrieve per-instance state from an activity before being killed
+     * so that the state can be restored in {@link #onCreate} or
+     * {@link #onRestoreInstanceState} (the {@link Bundle} populated by this method
+     * will be passed to both).
+     *
+     * @param outState Bundle in which to place your saved state.
+     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -143,6 +167,7 @@ public class MainActivity extends AppCompatActivity
                     mNavigationPresenter.onRefreshMenuClicked();
                 }
                 return true;
+
             case R.id.action_about:
                 //On Click of About
 
@@ -150,13 +175,127 @@ public class MainActivity extends AppCompatActivity
                 launchAboutActivity();
                 return true;
 
+            case R.id.action_hospital:
 
+                launchhospital();
+                return true;
+
+            case R.id.action_banks:
+
+                launchbanks();
+                return true;
+
+            case R.id.action_college:
+
+                launchcollege();
+                return true;
+
+            case R.id.action_police:
+
+                launchpolice();
+                return true;
+
+            case R.id.action_bus:
+
+                launchbus();
+                return true;
+
+            case R.id.action_train:
+
+                launchtrain();
+                return true;
+
+            case R.id.action_blood:
+
+                launchblood();
+                return true;
+
+            case R.id.action_emer:
+
+                launchemer();
+                return true;
+
+            case R.id.action_nearpolice:
+
+                launchnearpolice();
+                return true;
+
+            case R.id.logout:
+
+                launchlogout();
+                return true;
 
             default:
                 //On other cases, do the default menu handling
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void launchlogout() {
+
+        //Creating an Intent to launch AboutActivity
+        Intent aboutIntent = new Intent(this, LoginActivity.class);
+        //Starting the Activity
+        startActivity(aboutIntent);
+
+    }
+
+    private void launchnearpolice() {
+        Uri uri = Uri.parse("https://mysore.nic.in/en/public-utility-category/police-station/");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    private void launchemer() {
+        Uri uri = Uri.parse("https://mysore.nic.in/en/helpline/");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    private void launchblood() {
+        Uri uri = Uri.parse("https://jeevanbindu.org/welcome/blood_bank_list.php");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    private void launchtrain() {
+        Uri uri = Uri.parse("https://indiarailinfo.com/departures/mysuru-junction-mysore-mys/1430");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    private void launchbus() {
+        Uri uri = Uri.parse("https://mitmysore.in/downloads/Trans2-converted.pdf");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    private void launchpolice() {
+        Uri uri = Uri.parse("https://mysurupolice.karnataka.gov.in/storage/pdf-files/polcie%20stations.pdf");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    private void launchbanks() {
+        Uri uri = Uri.parse("https://mysore.nic.in/en/public-utility-category/banks/");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+
+    }
+
+    private void launchhospital() {
+        Uri uri = Uri.parse("https://mysore.nic.in/en/public-utility-category/hospitals/");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    private void launchcollege() {
+        Uri uri = Uri.parse("https://mysore.nic.in/en/public-utility-category/colleges/");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+
 
     /**
      * Method that launches the {@link AboutActivity}. Invoked when "About" Menu is clicked.
@@ -167,7 +306,6 @@ public class MainActivity extends AppCompatActivity
         //Starting the Activity
         startActivity(aboutIntent);
     }
-
 
     /**
      * Called when an item in the bottom navigation menu is selected.
@@ -223,8 +361,6 @@ public class MainActivity extends AppCompatActivity
                 mNavigationPresenter = new ShopListPresenter(appRepository,
                         (ShopListFragment) switchNavigationFragment(ShopListFragment.newInstance()));
                 return true;
-
-
         }
         //On all else, returning False
         return false;

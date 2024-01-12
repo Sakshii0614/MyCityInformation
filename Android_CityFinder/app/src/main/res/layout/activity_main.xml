@@ -23,7 +23,7 @@
             android:fitsSystemWindows="true"
             android:minHeight="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:popupTheme="@style/AppTheme"
             app:title="@string/app_name" />
 
     </android.support.design.widget.AppBarLayout>
